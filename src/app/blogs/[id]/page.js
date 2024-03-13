@@ -1,5 +1,5 @@
 import styles from "./blog-detail-page.module.css";
-
+import Comments from "@/components/comments";
 async function BlogDetailPage({ params }) {
   return (
     <div className={styles.postWrapper}>
@@ -9,8 +9,8 @@ async function BlogDetailPage({ params }) {
         efecansengul
       </p>
       <p className={styles.content}>askdljflşkasdklfjlşskajdfşlkjsaşldk</p>
-      {/*<Comments postId={params.id} />
-      <FormComments postId={params.id} />*/}
+      <Comments postId={params.id} />
+      {/*<FormComments postId={params.id} />*/}
     </div>
   );
 }

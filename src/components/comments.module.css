@@ -1,0 +1,14 @@
+.comments {
+  margin-top: 2rem;
+}
+.list {
+  margin-top: 1rem;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 4px;
+  min-width: fit-content;
+  list-style: none;
+}
+.autor {
+  color: rgb(140, 165, 165);
+}
