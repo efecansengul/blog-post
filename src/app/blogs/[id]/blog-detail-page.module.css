@@ -1,0 +1,18 @@
+.postWrapper {
+  padding-left: 100px;
+  padding-right: 100px;
+  letter-spacing: 2px;
+}
+.title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.author {
+  margin-bottom: 20px;
+}
+.author > span {
+  font-weight: 600;
+}
+.content {
+  text-indent: 20px;
+}
