@@ -22,6 +22,7 @@ function FormNewPost() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+    console.log(formData);
   }
   return (
     <>
