@@ -1,0 +1,27 @@
+.navbar {
+  display: flex;
+  padding: 1.4rem;
+  align-items: center;
+  justify-content: space-around;
+  background-color: steelblue;
+  font-size: 1.5rem;
+  border-radius: 4px;
+}
+.logo {
+  letter-spacing: 0.1px;
+  font-weight: 600;
+}
+.entry {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 72px;
+}
+@media (max-width: 768px) {
+  .navbar {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+  .entry {
+    gap: 20px;
+  }
+}
