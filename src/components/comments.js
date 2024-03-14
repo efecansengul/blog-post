@@ -1,15 +1,15 @@
 import styles from "./comments.module.css";
-const comments = [
-  {
-    id: 1,
-    author: {
-      name: "efecan",
-    },
-    text: "eaksfdjkfjlskşajdfklsadf",
-  },
-];
-const date = new Date().toString();
+import prisma from "@/lib/db";
 async function Comments({ postId }) {
+  const comments = await prisma.comment.findMany({
+    where: {
+      postId: postId,
+    },
+    include: {
+      author: true,
+    },
+  });
+  const date = new Date().toDateString();
   return (
     <div className={styles.comments}>
       <h2>Comments</h2>

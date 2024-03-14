@@ -45,7 +45,10 @@ function FormNewPost() {
         setLoading(false);
       }
       if (response.status === 200) {
+        console.log(response);
+
         const data = await response.json();
+        console.log(data);
         router.push(`/blogs/${data.newPost.id}`);
         router.refresh();
       }
@@ -80,7 +83,13 @@ function FormNewPost() {
           />
         </div>
 
-        <button className={styles.button}>Submit</button>
+        <button
+          className={styles.button}
+          disabled={!data?.user?.email}
+          style={{ pointerEvents: data?.user?.email ? "auto" : "none" }}
+        >
+          Submit
+        </button>
         {error && <p>Hata olustu tekrar gönderin</p>}
       </form>
     </>
