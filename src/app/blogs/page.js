@@ -1,21 +1,17 @@
 import Link from "next/link";
 import styles from "./blogs.module.css";
-const posts = [
-  {
-    id: 1,
-    title: "blog1",
-    author: "efecan sengul",
-    content: "this is first blog",
-  },
-  {
-    id: 2,
-    title: "blog2",
-    author: "sengulefecan sengul",
-    content: "this is first blog",
-  },
-];
+import prisma from "@/lib/db";
 
 async function BlogsPage() {
+  const posts = await prisma.post.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+    include: {
+      author: true,
+    },
+  });
+  //console.log(posts);
   return (
     <div className={styles.blogs}>
       <h1 className={styles.title}>Blogs</h1>
@@ -27,7 +23,7 @@ async function BlogsPage() {
             className={styles.blogCart}
           >
             <h2>{post.title}</h2>
-            <p>Written by: {post.author}</p>
+            <p>Written by: {post.author?.name}</p>
             <p className={styles.content}>{post.content}</p>
           </Link>
         ))}
