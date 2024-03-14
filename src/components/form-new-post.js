@@ -3,6 +3,7 @@ import ReactTextareaAutosize from "react-textarea-autosize";
 import styles from "./form-new-post.module.css";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 function FormNewPost() {
   const [loading, setLoading] = useState(false);
@@ -12,7 +13,7 @@ function FormNewPost() {
     title: "",
     content: "",
   });
-
+  const router = useRouter();
   //kullanıcı bilgisi
   const { data } = useSession();
   let user = <p>Welcome user.Please Login</p>;
@@ -29,7 +30,28 @@ function FormNewPost() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    console.log(formData);
+    try {
+      setLoading(true);
+      const response = await fetch("api/posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      setLoading(false);
+      if (!response.ok) {
+        setError(true);
+        setLoading(false);
+      }
+      if (response.status === 200) {
+        const data = await response.json();
+        router.push(`/blogs/${data.newPost.id}`);
+        router.refresh();
+      }
+    } catch (error) {
+      console.error(error);
+    }
   }
   return (
     <>
